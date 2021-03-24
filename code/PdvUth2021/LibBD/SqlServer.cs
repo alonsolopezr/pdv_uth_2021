@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.IO;
 
 namespace LibBD 
 {
@@ -25,9 +26,9 @@ namespace LibBD
             //initialize attribs
             this.SERVER = server;
             this.DBNAME = db;
-            this.US = us;
-            this.PWD = pwd;
-            this.PORT = port;
+            this.US     = us;
+            this.PWD    = pwd;
+            this.PORT   = port;
             //concatenates the connectionString
             this.connectionString = $"Server={this.SERVER},{this.PORT};Database={this.DBNAME};User Id={this.US};Password={this.PWD};";
             //instanciate the connection
@@ -88,12 +89,95 @@ namespace LibBD
 
         public override bool create(string table, List<DataCollection> data)
         {
-            throw new NotImplementedException();
+            //result variable
+            bool res = false;
+
+            //bloque try catch
+            try
+            {
+                //open conex
+                this.Connect();
+                //parse the columns names using the dataCollection
+                //new string for the columns
+                string columns = "";
+                foreach (DataCollection column in data)
+                    columns += column.Name + ", ";
+                columns = columns.Remove(columns.Length - 2);
+                //parse the columns values from the dataCollection
+                //string for the columns values
+                string values = "";
+                foreach (DataCollection column in data)
+                    values += column.Value+", ";
+                //remove the last comma ','
+                values = values.Remove(values.Length - 2);
+                //create insert query
+                string query = $"INSERT INTO {table} ({columns}) VALUES ({values})";
+                //instanciates the command
+                com = new SqlCommand(query, con);
+                //execute the insert sentence
+                int rows = com.ExecuteNonQuery();
+                //validate the execution result
+                if (rows == 1) res = true;
+                else BD.ERROR = "ERROR, malfunction query at insert DB action.";              
+            }
+            catch (SqlException sqlex)
+            {
+                BD.ERROR = "SQL ERROR at INSERT sentence. "+sqlex.Message;
+            }
+            catch (IOException ioex)
+            {
+                BD.ERROR = "I/O ERROR at INSERT sentence. " + ioex.Message;
+            }
+            catch (Exception ex)
+            {
+                BD.ERROR = "General ERROR at INSERT sentence. " + ex.Message;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            //return the create resuklt
+            return res;
         }
 
         public override bool delete(string table, int id)
         {
-            throw new NotImplementedException();
+            //result variable
+            bool res = false;
+
+            //bloque try catch
+            try
+            {
+                //open conex
+                this.Connect();
+                //create delete query
+                string query = $"DELETE FROM {table} WHERE id = {id}  ";
+                //instanciates the command
+                com = new SqlCommand(query, con);
+                //execute the insert sentence
+                int rows = com.ExecuteNonQuery();
+                //validate the execution result
+                if (rows == 1) res = true;
+                else BD.ERROR = "ERROR, malfunction query at Delete DB action.";
+            }
+            catch (SqlException sqlex)
+            {
+                BD.ERROR = "SQL ERROR at Delete sentence. " + sqlex.Message;
+            }
+            catch (IOException ioex)
+            {
+                BD.ERROR = "I/O ERROR at Delete sentence. " + ioex.Message;
+            }
+            catch (Exception ex)
+            {
+                BD.ERROR = "General ERROR at Delete sentence. " + ex.Message;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            //return the create resuklt
+            return res;
         }
 
       
@@ -115,7 +199,49 @@ namespace LibBD
 
         public override bool update(string table, List<DataCollection> data, int id)
         {
-            throw new NotImplementedException();
+            //result variable
+            bool res = false;
+
+            //bloque try catch
+            try
+            {
+                //open conex
+                this.Connect();
+                //parse the columns names using the dataCollection
+                //new string for the columns
+                string columnsValues = "";
+                foreach (DataCollection column in data)
+                    columnsValues += $" {column.Name}={column.Value}, ";
+                //remove the last comma ','
+                columnsValues = columnsValues.Remove(columnsValues.Length - 2);
+                //create insert query
+                string query = $"UPDATE {table} SET {columnsValues} WHERE id = {id}  ";
+                //instanciates the command
+                com = new SqlCommand(query, con);
+                //execute the insert sentence
+                int rows = com.ExecuteNonQuery();
+                //validate the execution result
+                if (rows == 1) res = true;
+                else BD.ERROR = "ERROR, malfunction query at update DB action.";
+            }
+            catch (SqlException sqlex)
+            {
+                BD.ERROR = "SQL ERROR at UPDATE sentence. " + sqlex.Message;
+            }
+            catch (IOException ioex)
+            {
+                BD.ERROR = "I/O ERROR at UPDATE sentence. " + ioex.Message;
+            }
+            catch (Exception ex)
+            {
+                BD.ERROR = "General ERROR at UPDATE sentence. " + ex.Message;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            //return the create resuklt
+            return res;
         }
     }
 }
