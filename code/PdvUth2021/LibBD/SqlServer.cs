@@ -17,7 +17,7 @@ namespace LibBD
         SqlCommand com;
         //SqlDataReader dr;
 
-        //COnectionString
+        //ConnectionString
         string connectionString;
 
         //constructor
@@ -37,7 +37,7 @@ namespace LibBD
 
 
 
-        //BND actions
+        //BD actions
 
         public override bool Connect()
         {
@@ -140,63 +140,6 @@ namespace LibBD
             return res;
         }
 
-        public override bool delete(string table, int id)
-        {
-            //result variable
-            bool res = false;
-
-            //bloque try catch
-            try
-            {
-                //open conex
-                this.Connect();
-                //create delete query
-                string query = $"DELETE FROM {table} WHERE id = {id}  ";
-                //instanciates the command
-                com = new SqlCommand(query, con);
-                //execute the insert sentence
-                int rows = com.ExecuteNonQuery();
-                //validate the execution result
-                if (rows == 1) res = true;
-                else BD.ERROR = "ERROR, malfunction query at Delete DB action.";
-            }
-            catch (SqlException sqlex)
-            {
-                BD.ERROR = "SQL ERROR at Delete sentence. " + sqlex.Message;
-            }
-            catch (IOException ioex)
-            {
-                BD.ERROR = "I/O ERROR at Delete sentence. " + ioex.Message;
-            }
-            catch (Exception ex)
-            {
-                BD.ERROR = "General ERROR at Delete sentence. " + ex.Message;
-            }
-            finally
-            {
-                Disconnect();
-            }
-            //return the create resuklt
-            return res;
-        }
-
-      
-
-        public override List<object> index(string table, OrderBy order)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override List<object> read(List<string> fields, string table, List<SearchCollection> search)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override List<object> read(List<string> fields, string table1, string table2, List<string> onFields, List<SearchCollection> search)
-        {
-            throw new NotImplementedException();
-        }
-
         public override bool update(string table, List<DataCollection> data, int id)
         {
             //result variable
@@ -242,6 +185,180 @@ namespace LibBD
             }
             //return the create resuklt
             return res;
+        }
+        public override bool delete(string table, int id)
+        {
+            //result variable
+            bool res = false;
+
+            //bloque try catch
+            try
+            {
+                //open conex
+                this.Connect();
+                //create delete query
+                string query = $"DELETE FROM {table} WHERE id = {id}  ";
+                //instanciates the command
+                com = new SqlCommand(query, con);
+                //execute the insert sentence
+                int rows = com.ExecuteNonQuery();
+                //validate the execution result
+                if (rows == 1) res = true;
+                else BD.ERROR = "ERROR, malfunction query at Delete DB action.";
+            }
+            catch (SqlException sqlex)
+            {
+                BD.ERROR = "SQL ERROR at Delete sentence. " + sqlex.Message;
+            }
+            catch (IOException ioex)
+            {
+                BD.ERROR = "I/O ERROR at Delete sentence. " + ioex.Message;
+            }
+            catch (Exception ex)
+            {
+                BD.ERROR = "General ERROR at Delete sentence. " + ex.Message;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            //return the create resuklt
+            return res;
+        }
+
+        //SELECT *  FROM tabla WHERE 1 ORDER BY campo ASC/DESC
+        public override List<List<object>> index(string table, OrderBy order)
+        {
+            //returns a dynamic list of RECORDS/ROWS, each of these are List<object>
+            List<List<object>> res = new List<List<object>>();
+            //try catch
+            try
+            {
+                //connect
+                this.Connect();
+                //create the select query
+                string query = $"SELECT * FROM {table} WHERE 1 ORDER BY {order.Name} {order.OrderCriteria}";
+                //instanciate the SQL command
+                com = new SqlCommand(query, con);
+                //execute (READER) the query
+                SqlDataReader dr = com.ExecuteReader();
+                //parse the dataReader
+                //is there any RECOIRDS/ROWS from the SELECT
+                if(dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        //lets create a List<object> for each RECORD
+                        List<object> row = new List<object>();
+                        //read every column of EVERY EACH of the ROWS
+                        for (int i = 0; i < dr.FieldCount; i++)
+                            row.Add(dr.GetValue(i));
+                        //we ADD this List to the res Collection  
+                        res.Add(row);
+                    }
+                }else
+                {
+                    BD.ERROR = "EMPTY TABLE, NO ROWS RESULTED in index.";
+                }
+                //return
+            }
+            catch (SqlException sqlex)
+            {
+                BD.ERROR = $"SQL ERROR in reading the table -{table}- index . " + sqlex.Message;
+            }
+            catch (IOException ioex)
+            {
+                BD.ERROR = $"I/O ERROR in reading the table -{table}- index. " + ioex.Message;
+            }
+            catch (Exception ex)
+            {
+                BD.ERROR = $"General ERROR in reading the table -{table}- index. " + ex.Message;
+            }finally
+            {
+                this.Disconnect();
+            }
+            //return the Records collection
+            return res;
+        }
+
+        public override List<List<object>> read(List<string> fields, string table, List<SearchCollection> search)
+        {
+            //returns a dynamic list of RECORDS/ROWS, each of these are List<object>
+            List<List<object>> res = new List<List<object>>();
+            //try catch
+            try
+            {
+                //connect
+                this.Connect();
+                string parsedFields = "";
+                //parse the fields collections
+                foreach (string col in fields)
+                    parsedFields += $"{col},";
+                //remove the last comma
+                parsedFields = parsedFields.Remove(parsedFields.Length - 2);
+                string parsedWhere = "";
+                //Parse the search collections
+                foreach (SearchCollection criteria in search)
+                {   //SELECT * FROM products WHERE -> codBarras like '%12345678%' OR/AND marca_id = 2 (---)  (ORDER BY ??)
+                    parsedWhere += $" {criteria.Name} {criteria.parseOperator(criteria.Operator)} {criteria.Value} {criteria.parseLogicOperator(criteria.LogicOp) }";
+                }
+                //create the select query
+                string query = $"SELECT {parsedFields} FROM {table} WHERE {parsedWhere} "; // ORDER BY {order.Name} {order.OrderCriteria}";
+                //instanciate the SQL command
+                com = new SqlCommand(query, con);
+                //execute (READER) the query
+                SqlDataReader dr = com.ExecuteReader();
+                //parse the dataReader
+                //is there any RECOIRDS/ROWS from the SELECT
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        //lets create a List<object> for each RECORD
+                        List<object> row = new List<object>();
+                        //read every column of EVERY EACH of the ROWS
+                        for (int i = 0; i < dr.FieldCount; i++)
+                            row.Add(dr.GetValue(i));
+                        //we ADD this List to the res Collection  
+                        res.Add(row);
+                    }
+                }
+                else
+                {
+                    BD.ERROR = "EMPTY TABLE, NO ROWS RESULTED.";
+                }
+                //return
+            }
+            catch (SqlException sqlex)
+            {
+                BD.ERROR = $"SQL ERROR in reading the table -{table}-. " + sqlex.Message;
+            }
+            catch (IOException ioex)
+            {
+                BD.ERROR = $"I/O ERROR in reading the table -{table}-. " + ioex.Message;
+            }
+            catch (Exception ex)
+            {
+                BD.ERROR = $"General ERROR in reading the table -{table}-. " + ex.Message;
+            }
+            finally
+            {
+                this.Disconnect();
+            }
+            //return the Records collection
+            return res;
+        }
+
+        public override List<List<object>> read(List<string> fields, string table1, string table2, List<string> onFields, List<SearchCollection> search)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+
+        public override string ToString()
+        {
+            return base.ToString(); 
         }
     }
 }

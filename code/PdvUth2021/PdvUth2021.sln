@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormPdvUth2021", "WinFormPdvUth2021\WinFormPdvUth2021.csproj", "{69E2FED2-3248-43B1-801A-2D9406684B69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormPdvUth2021", "WinFormPdvUth2021\WinFormPdvUth2021.csproj", "{69E2FED2-3248-43B1-801A-2D9406684B69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibPdvUTh2021", "LibPdvUTh2021\LibPdvUTh2021.csproj", "{2FA9A834-15A0-40B7-9D37-E0F4A98DD1FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibPdvUTh2021", "LibPdvUTh2021\LibPdvUTh2021.csproj", "{2FA9A834-15A0-40B7-9D37-E0F4A98DD1FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibBD", "LibBD\LibBD.csproj", "{4F7B83ED-1FBB-4DB4-B33E-EAD4A723B670}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibBD", "LibBD\LibBD.csproj", "{4F7B83ED-1FBB-4DB4-B33E-EAD4A723B670}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibValidations", "LibValidations\LibValidations.csproj", "{C6453771-779A-48B5-BDC3-5F771654BC77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{4F7B83ED-1FBB-4DB4-B33E-EAD4A723B670}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F7B83ED-1FBB-4DB4-B33E-EAD4A723B670}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F7B83ED-1FBB-4DB4-B33E-EAD4A723B670}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6453771-779A-48B5-BDC3-5F771654BC77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6453771-779A-48B5-BDC3-5F771654BC77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6453771-779A-48B5-BDC3-5F771654BC77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6453771-779A-48B5-BDC3-5F771654BC77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -50,7 +50,7 @@ namespace LibBD
         /// <param name="table">The table from which the query will be made</param>
         /// <param name="search">The search criteria and their logic</param>
         /// <returns>A list of objects that will represent a ROW each one of them, and every ROW is a List object.</returns>
-        public abstract List<object> read(List<string> fields, string table, List<SearchCollection> search);
+        public abstract List<List<object>> read(List<string> fields, string table, List<SearchCollection> search);
         /// <summary>
         /// Selects a ROW SET that will result of a Query on the Tables on the
         /// intersection by an inner join, between table1 and table2, with OnFields list 
@@ -62,14 +62,14 @@ namespace LibBD
         /// <param name="onFields">The fields conditionals the will allow to generate and intersection</param>
         /// <param name="search">The search criteria and their logic</param>
         /// <returns>A list of objects that will represent a ROW each one of them, and every ROW is a List object.</returns>
-        public abstract List<object> read(List<string> fields, string table1, string table2, List<string> onFields, List<SearchCollection> search);
+        public abstract List<List<object>> read(List<string> fields, string table1, string table2, List<string> onFields, List<SearchCollection> search);
         /// <summary>
         /// Retrieves the complete ROW SET of a table, order by the field in the input parametrs
         /// </summary>
         /// <param name="table">The table from which to retrive the complete ROW SET</param>
         /// <param name="order">The filed to be employ in the order, ASC or DESC</param>
         /// <returns>A list of objects that will represent a ROW each one of them, and every ROW is a List object</returns>
-        public abstract List<object> index(string table, OrderBy order);
+        public abstract List<List<object>> index(string table, OrderBy order);
 
         /// <summary>
         /// Opens the connection to the SERVER stablished by the connectionString
