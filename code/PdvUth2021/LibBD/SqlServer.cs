@@ -285,6 +285,8 @@ namespace LibBD
         {
             //returns a dynamic list of RECORDS/ROWS, each of these are List<object>
             List<List<object>> res = new List<List<object>>();
+           
+            
             //try catch
             try
             {
@@ -351,7 +353,75 @@ namespace LibBD
 
         public override List<List<object>> read(List<string> fields, string table1, string table2, List<string> onFields, List<SearchCollection> search)
         {
-            throw new NotImplementedException();
+            //returns a dynamic list of RECORDS/ROWS, each of these are List<object>
+            List<List<object>> res = new List<List<object>>();
+            //try catch
+            try
+            {
+                //connect
+                this.Connect();
+                string parsedFields = "";
+                //parse the fields collections
+                foreach (string col in fields)
+                    parsedFields += $"{col},";
+                //remove the last comma
+                parsedFields = parsedFields.Remove(parsedFields.Length - 2);
+                string parsedWhere = "";
+                //Parse the search collections
+                foreach (SearchCollection criteria in search)
+                {   //SELECT * FROM products WHERE -> codBarras like '%12345678%' OR/AND marca_id = 2 (---)  (ORDER BY ??)
+                    parsedWhere += $" {criteria.Name} {criteria.parseOperator(criteria.Operator)} {criteria.Value} {criteria.parseLogicOperator(criteria.LogicOp) }";
+                }
+                //parse the onQuery
+                //the Onstring
+                string onInnerString = "";
+                foreach (string col in onFields)
+                    onInnerString += $" {col} "; //table1.id = tabla2.fk AND products.id = sales_details.product_id
+                //create the select query
+                string query = $"SELECT {parsedFields} FROM {table1} INNER JOIN {table2} ON {onInnerString}  WHERE {parsedWhere} "; // ORDER BY {order.Name} {order.OrderCriteria}";
+                //instanciate the SQL command
+                com = new SqlCommand(query, con);
+                //execute (READER) the query
+                SqlDataReader dr = com.ExecuteReader();
+                //parse the dataReader
+                //is there any RECOIRDS/ROWS from the SELECT
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        //lets create a List<object> for each RECORD
+                        List<object> row = new List<object>();
+                        //read every column of EVERY EACH of the ROWS
+                        for (int i = 0; i < dr.FieldCount; i++)
+                            row.Add(dr.GetValue(i));
+                        //we ADD this List to the res Collection  
+                        res.Add(row);
+                    }
+                }
+                else
+                {
+                    BD.ERROR = "EMPTY TABLE, NO ROWS RESULTED on INNER JOIN QUERY.";
+                }
+                //return
+            }
+            catch (SqlException sqlex)
+            {
+                BD.ERROR = $"SQL ERROR in reading on INNER JOIN QUERY the table -{table1}- and table -{table2}-. " + sqlex.Message;
+            }
+            catch (IOException ioex)
+            {
+                BD.ERROR = $"I/O ERROR in reading on INNER JOIN QUERY the table -{table1}- and table -{table2}-. " + ioex.Message;
+            }
+            catch (Exception ex)
+            {
+                BD.ERROR = $"General ERROR in reading on INNER JOIN QUERY the table -{table1}- and table -{table2}-. " + ex.Message;
+            }
+            finally
+            {
+                this.Disconnect();
+            }
+            //return the Records collection
+            return res;
         }
 
        
