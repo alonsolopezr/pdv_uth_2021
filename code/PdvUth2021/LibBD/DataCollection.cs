@@ -5,15 +5,19 @@
         //vars
         public string Name{get; set;}
         public Types FieldType { get; set; }
+        private object fieldValue;
         public object Value 
         {
             get
             {
                 if (this.valueHasQuotes())
-                    return $"'{this.Value}'";
-                return this.Value;
+                    return $"'{this.fieldValue}'";
+                return this.fieldValue;
             }
-            set => this.Value = value;            
+            set
+            {
+                fieldValue = value;
+            }
         }
 
         //constructor
