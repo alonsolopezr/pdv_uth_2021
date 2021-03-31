@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LibPdvUTh2021
+namespace LibValidations
 {
     public class Class1
     {
