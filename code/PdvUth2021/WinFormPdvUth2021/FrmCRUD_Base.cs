@@ -10,12 +10,21 @@ using System.Windows.Forms;
 
 namespace WinFormPdvUth2021
 {
-    public partial class Form1 : Form
+    public partial class FrmCRUD_Base : Form
     {
-        public Form1()
+        public FrmCRUD_Base()
         {
             InitializeComponent();
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dgvData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
