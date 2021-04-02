@@ -37,5 +37,10 @@ namespace WinFormPdvUth2021
             //vamos a redimensionar el groupbox de registros con 1/3 de la altura del form
             gBoxRegistros.Height =  this.Height / 3;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+          
+        }
     }
 }
