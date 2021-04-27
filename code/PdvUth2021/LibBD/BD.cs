@@ -9,6 +9,7 @@ namespace LibBD
     /// </summary>
     public abstract class BD
     {
+        
         //props
         public static string ERROR;
         //db props
@@ -27,6 +28,7 @@ namespace LibBD
         /// <param name="data">The data that will be used to create the row. It includes the field name, type, and Value.</param>
         /// <returns>True if the row is created. False if there's an Error. </returns>
         public abstract bool create(string table, List<DataCollection> data);
+        //INSERT INTO t (c1, c2, c3...CN) VALUES ('v1', 'v2', v3...'vN')
         /// <summary>
         /// Updates a ROW with the ID and Data provided in the parameters, on the table stablished.
         /// </summary>
@@ -69,7 +71,15 @@ namespace LibBD
         /// <param name="table">The table from which to retrive the complete ROW SET</param>
         /// <param name="order">The filed to be employ in the order, ASC or DESC</param>
         /// <returns>A list of objects that will represent a ROW each one of them, and every ROW is a List object</returns>
-        public abstract List<List<object>> index(string table, OrderBy order);
+        public abstract List<List<object>> index(string table, OrderBy order); 
+        
+        /// <summary>
+        /// Retrieves the Id and Name of the ROW SET of a table, for using with combos
+        /// </summary>
+        /// <param name="table">The table from which to retrive the complete ROW SET</param>
+        /// <param name="order">The filed to be employ in the order, ASC or DESC</param>
+        /// <returns>A list of objects that will represent a ROW each one of them, and every ROW is a List object</returns>
+        public abstract List<List<object>> index( string table, string idField = "id", string display="name");
 
         /// <summary>
         /// Opens the connection to the SERVER stablished by the connectionString

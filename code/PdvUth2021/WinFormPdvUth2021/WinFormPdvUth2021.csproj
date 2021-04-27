@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LibPdvUTh2021\LibPdvUTh2021.csproj" />
+    <ProjectReference Include="..\LibValidations\LibValidations.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="FrmProductos.cs">
       <SubType>Form</SubType>
     </Compile>

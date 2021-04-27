@@ -71,16 +71,16 @@ namespace WinFormPdvUth2021
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.comboUnitOfMeasure = new System.Windows.Forms.ComboBox();
+            this.comboSubcategory = new System.Windows.Forms.ComboBox();
+            this.comboCategory = new System.Windows.Forms.ComboBox();
+            this.comboBrand = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtBarcode = new System.Windows.Forms.TextBox();
             this.lblBarcode = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.lblDescription = new System.Windows.Forms.Label();
@@ -118,7 +118,7 @@ namespace WinFormPdvUth2021
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(813, 100);
+            this.panelHeader.Size = new System.Drawing.Size(931, 100);
             this.panelHeader.TabIndex = 0;
             // 
             // panelAvatar
@@ -128,7 +128,7 @@ namespace WinFormPdvUth2021
             this.panelAvatar.Controls.Add(this.label20);
             this.panelAvatar.Controls.Add(this.picBoxAvatar);
             this.panelAvatar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelAvatar.Location = new System.Drawing.Point(438, 0);
+            this.panelAvatar.Location = new System.Drawing.Point(556, 0);
             this.panelAvatar.Name = "panelAvatar";
             this.panelAvatar.Size = new System.Drawing.Size(375, 100);
             this.panelAvatar.TabIndex = 1;
@@ -211,7 +211,7 @@ namespace WinFormPdvUth2021
             this.panelTituloForm.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTituloForm.Location = new System.Drawing.Point(0, 100);
             this.panelTituloForm.Name = "panelTituloForm";
-            this.panelTituloForm.Size = new System.Drawing.Size(813, 66);
+            this.panelTituloForm.Size = new System.Drawing.Size(931, 66);
             this.panelTituloForm.TabIndex = 1;
             // 
             // panelReloj
@@ -219,7 +219,7 @@ namespace WinFormPdvUth2021
             this.panelReloj.Controls.Add(this.lblHora);
             this.panelReloj.Controls.Add(this.lblFecha);
             this.panelReloj.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelReloj.Location = new System.Drawing.Point(613, 0);
+            this.panelReloj.Location = new System.Drawing.Point(731, 0);
             this.panelReloj.Name = "panelReloj";
             this.panelReloj.Size = new System.Drawing.Size(200, 66);
             this.panelReloj.TabIndex = 11;
@@ -258,10 +258,10 @@ namespace WinFormPdvUth2021
             // 
             this.panelRegisteredData.Controls.Add(this.panelTituloData);
             this.panelRegisteredData.Controls.Add(this.dgvData);
-            this.panelRegisteredData.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelRegisteredData.Location = new System.Drawing.Point(0, 317);
+            this.panelRegisteredData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRegisteredData.Location = new System.Drawing.Point(0, 166);
             this.panelRegisteredData.Name = "panelRegisteredData";
-            this.panelRegisteredData.Size = new System.Drawing.Size(813, 249);
+            this.panelRegisteredData.Size = new System.Drawing.Size(931, 400);
             this.panelRegisteredData.TabIndex = 2;
             // 
             // panelTituloData
@@ -270,7 +270,7 @@ namespace WinFormPdvUth2021
             this.panelTituloData.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTituloData.Location = new System.Drawing.Point(0, 0);
             this.panelTituloData.Name = "panelTituloData";
-            this.panelTituloData.Size = new System.Drawing.Size(813, 43);
+            this.panelTituloData.Size = new System.Drawing.Size(931, 43);
             this.panelTituloData.TabIndex = 1;
             // 
             // lblTituloData
@@ -293,11 +293,11 @@ namespace WinFormPdvUth2021
             this.Column4,
             this.Column5,
             this.Column6});
-            this.dgvData.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvData.Location = new System.Drawing.Point(0, 71);
+            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvData.Location = new System.Drawing.Point(0, 0);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowTemplate.Height = 25;
-            this.dgvData.Size = new System.Drawing.Size(813, 178);
+            this.dgvData.Size = new System.Drawing.Size(931, 400);
             this.dgvData.TabIndex = 0;
             this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellContentClick);
             // 
@@ -355,7 +355,7 @@ namespace WinFormPdvUth2021
             this.gBoxForm.Margin = new System.Windows.Forms.Padding(13, 3, 13, 3);
             this.gBoxForm.Name = "gBoxForm";
             this.gBoxForm.Padding = new System.Windows.Forms.Padding(13);
-            this.gBoxForm.Size = new System.Drawing.Size(813, 222);
+            this.gBoxForm.Size = new System.Drawing.Size(931, 222);
             this.gBoxForm.TabIndex = 3;
             this.gBoxForm.TabStop = false;
             this.gBoxForm.Text = "Product Data Manipulation";
@@ -441,86 +441,90 @@ namespace WinFormPdvUth2021
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.textBox5);
+            this.panel2.Controls.Add(this.comboUnitOfMeasure);
+            this.panel2.Controls.Add(this.comboSubcategory);
+            this.panel2.Controls.Add(this.comboCategory);
+            this.panel2.Controls.Add(this.comboBrand);
             this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.textBox6);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.textBox7);
             this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.textBox8);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Location = new System.Drawing.Point(339, 23);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(339, 224);
             this.panel2.TabIndex = 8;
             // 
-            // textBox5
+            // comboUnitOfMeasure
             // 
-            this.textBox5.Location = new System.Drawing.Point(148, 148);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(169, 36);
-            this.textBox5.TabIndex = 7;
+            this.comboUnitOfMeasure.FormattingEnabled = true;
+            this.comboUnitOfMeasure.Location = new System.Drawing.Point(148, 142);
+            this.comboUnitOfMeasure.Name = "comboUnitOfMeasure";
+            this.comboUnitOfMeasure.Size = new System.Drawing.Size(169, 42);
+            this.comboUnitOfMeasure.TabIndex = 11;
+            // 
+            // comboSubcategory
+            // 
+            this.comboSubcategory.FormattingEnabled = true;
+            this.comboSubcategory.Location = new System.Drawing.Point(148, 101);
+            this.comboSubcategory.Name = "comboSubcategory";
+            this.comboSubcategory.Size = new System.Drawing.Size(169, 42);
+            this.comboSubcategory.TabIndex = 10;
+            // 
+            // comboCategory
+            // 
+            this.comboCategory.FormattingEnabled = true;
+            this.comboCategory.Location = new System.Drawing.Point(148, 59);
+            this.comboCategory.Name = "comboCategory";
+            this.comboCategory.Size = new System.Drawing.Size(169, 42);
+            this.comboCategory.TabIndex = 9;
+            // 
+            // comboBrand
+            // 
+            this.comboBrand.FormattingEnabled = true;
+            this.comboBrand.Location = new System.Drawing.Point(148, 17);
+            this.comboBrand.Name = "comboBrand";
+            this.comboBrand.Size = new System.Drawing.Size(169, 42);
+            this.comboBrand.TabIndex = 8;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(16, 148);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 34);
+            this.label6.Size = new System.Drawing.Size(97, 34);
             this.label6.TabIndex = 6;
-            this.label6.Text = "label6";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(148, 106);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(169, 36);
-            this.textBox6.TabIndex = 5;
+            this.label6.Text = "Measure";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(16, 109);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 34);
+            this.label7.Size = new System.Drawing.Size(138, 34);
             this.label7.TabIndex = 4;
-            this.label7.Text = "label7";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(148, 64);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(169, 36);
-            this.textBox7.TabIndex = 3;
+            this.label7.Text = "Subcategory";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(16, 67);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(75, 34);
+            this.label8.Size = new System.Drawing.Size(105, 34);
             this.label8.TabIndex = 2;
-            this.label8.Text = "label8";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(148, 22);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(169, 36);
-            this.textBox8.TabIndex = 1;
+            this.label8.Text = "Category";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(16, 25);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(75, 34);
+            this.label9.Size = new System.Drawing.Size(72, 34);
             this.label9.TabIndex = 0;
-            this.label9.Text = "label9";
+            this.label9.Text = "Brand";
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Controls.Add(this.txtBarcode);
             this.panel1.Controls.Add(this.lblBarcode);
             this.panel1.Controls.Add(this.txtDescription);
             this.panel1.Controls.Add(this.lblDescription);
@@ -533,12 +537,12 @@ namespace WinFormPdvUth2021
             this.panel1.Size = new System.Drawing.Size(339, 224);
             this.panel1.TabIndex = 0;
             // 
-            // textBox4
+            // txtBarcode
             // 
-            this.textBox4.Location = new System.Drawing.Point(148, 148);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(169, 36);
-            this.textBox4.TabIndex = 7;
+            this.txtBarcode.Location = new System.Drawing.Point(148, 148);
+            this.txtBarcode.Name = "txtBarcode";
+            this.txtBarcode.Size = new System.Drawing.Size(169, 36);
+            this.txtBarcode.TabIndex = 7;
             // 
             // lblBarcode
             // 
@@ -607,7 +611,7 @@ namespace WinFormPdvUth2021
             this.panelActions.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.panelActions.Location = new System.Drawing.Point(0, 388);
             this.panelActions.Name = "panelActions";
-            this.panelActions.Size = new System.Drawing.Size(813, 54);
+            this.panelActions.Size = new System.Drawing.Size(931, 52);
             this.panelActions.TabIndex = 4;
             // 
             // btnCancel
@@ -617,7 +621,7 @@ namespace WinFormPdvUth2021
             this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(667, 9);
+            this.btnCancel.Location = new System.Drawing.Point(785, 9);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(115, 39);
             this.btnCancel.TabIndex = 3;
@@ -632,7 +636,7 @@ namespace WinFormPdvUth2021
             this.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(61)))), ((int)(((byte)(119)))));
-            this.btnUpdate.Location = new System.Drawing.Point(534, 9);
+            this.btnUpdate.Location = new System.Drawing.Point(652, 9);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(115, 39);
             this.btnUpdate.TabIndex = 2;
@@ -646,7 +650,7 @@ namespace WinFormPdvUth2021
             this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(61)))), ((int)(((byte)(119)))));
-            this.btnDelete.Location = new System.Drawing.Point(401, 9);
+            this.btnDelete.Location = new System.Drawing.Point(519, 9);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(115, 39);
             this.btnDelete.TabIndex = 1;
@@ -660,7 +664,7 @@ namespace WinFormPdvUth2021
             this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(268, 9);
+            this.btnAdd.Location = new System.Drawing.Point(386, 9);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(115, 39);
             this.btnAdd.TabIndex = 0;
@@ -672,7 +676,7 @@ namespace WinFormPdvUth2021
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(211)))));
-            this.ClientSize = new System.Drawing.Size(813, 566);
+            this.ClientSize = new System.Drawing.Size(931, 566);
             this.Controls.Add(this.panelActions);
             this.Controls.Add(this.gBoxForm);
             this.Controls.Add(this.panelRegisteredData);
@@ -751,16 +755,12 @@ namespace WinFormPdvUth2021
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtBarcode;
         private System.Windows.Forms.Label lblBarcode;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Label lblDescription;
@@ -768,5 +768,9 @@ namespace WinFormPdvUth2021
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label lblID;
+        private System.Windows.Forms.ComboBox comboUnitOfMeasure;
+        private System.Windows.Forms.ComboBox comboSubcategory;
+        private System.Windows.Forms.ComboBox comboCategory;
+        private System.Windows.Forms.ComboBox comboBrand;
     }
 }

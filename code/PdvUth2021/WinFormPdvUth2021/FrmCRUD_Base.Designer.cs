@@ -61,7 +61,6 @@ namespace WinFormPdvUth2021
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gBoxForm = new System.Windows.Forms.GroupBox();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -71,6 +70,7 @@ namespace WinFormPdvUth2021
             this.label12 = new System.Windows.Forms.Label();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -104,8 +104,8 @@ namespace WinFormPdvUth2021
             this.panelTituloData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.gBoxForm.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelActions.SuspendLayout();
             this.SuspendLayout();
@@ -355,25 +355,10 @@ namespace WinFormPdvUth2021
             this.gBoxForm.Margin = new System.Windows.Forms.Padding(13, 3, 13, 3);
             this.gBoxForm.Name = "gBoxForm";
             this.gBoxForm.Padding = new System.Windows.Forms.Padding(13);
-            this.gBoxForm.Size = new System.Drawing.Size(813, 222);
+            this.gBoxForm.Size = new System.Drawing.Size(813, 270);
             this.gBoxForm.TabIndex = 3;
             this.gBoxForm.TabStop = false;
             this.gBoxForm.Text = "Product Data Manipulation";
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.textBox5);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.textBox6);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.textBox7);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.textBox8);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Location = new System.Drawing.Point(339, 23);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(339, 224);
-            this.panel2.TabIndex = 8;
             // 
             // panel3
             // 
@@ -453,6 +438,21 @@ namespace WinFormPdvUth2021
             this.label13.Size = new System.Drawing.Size(80, 34);
             this.label13.TabIndex = 0;
             this.label13.Text = "label13";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.textBox5);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.textBox6);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.textBox7);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.textBox8);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Location = new System.Drawing.Point(339, 23);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(339, 224);
+            this.panel2.TabIndex = 8;
             // 
             // textBox5
             // 
@@ -605,7 +605,7 @@ namespace WinFormPdvUth2021
             this.panelActions.Controls.Add(this.btnAdd);
             this.panelActions.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelActions.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.panelActions.Location = new System.Drawing.Point(0, 388);
+            this.panelActions.Location = new System.Drawing.Point(0, 436);
             this.panelActions.Name = "panelActions";
             this.panelActions.Size = new System.Drawing.Size(813, 54);
             this.panelActions.TabIndex = 4;
@@ -698,10 +698,10 @@ namespace WinFormPdvUth2021
             this.panelTituloData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.gBoxForm.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panelActions.ResumeLayout(false);

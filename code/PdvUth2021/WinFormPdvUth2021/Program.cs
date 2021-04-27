@@ -17,7 +17,7 @@ namespace WinFormPdvUth2021
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmCRUD_Base());
+            Application.Run(new FrmProducto());
         }
     }
 }
