@@ -30,12 +30,6 @@ namespace WinFormPdvUth2021
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProducto));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panelAvatar = new System.Windows.Forms.Panel();
             this.label22 = new System.Windows.Forms.Label();
@@ -51,15 +45,9 @@ namespace WinFormPdvUth2021
             this.lblFecha = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelRegisteredData = new System.Windows.Forms.Panel();
+            this.dgvData = new System.Windows.Forms.DataGridView();
             this.panelTituloData = new System.Windows.Forms.Panel();
             this.lblTituloData = new System.Windows.Forms.Label();
-            this.dgvData = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gBoxForm = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.textBox9 = new System.Windows.Forms.TextBox();
@@ -80,6 +68,8 @@ namespace WinFormPdvUth2021
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtBarcode = new System.Windows.Forms.TextBox();
             this.lblBarcode = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
@@ -101,8 +91,8 @@ namespace WinFormPdvUth2021
             this.panelTituloForm.SuspendLayout();
             this.panelReloj.SuspendLayout();
             this.panelRegisteredData.SuspendLayout();
-            this.panelTituloData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
+            this.panelTituloData.SuspendLayout();
             this.gBoxForm.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -256,13 +246,24 @@ namespace WinFormPdvUth2021
             // 
             // panelRegisteredData
             // 
-            this.panelRegisteredData.Controls.Add(this.panelTituloData);
             this.panelRegisteredData.Controls.Add(this.dgvData);
+            this.panelRegisteredData.Controls.Add(this.panelTituloData);
             this.panelRegisteredData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRegisteredData.Location = new System.Drawing.Point(0, 166);
             this.panelRegisteredData.Name = "panelRegisteredData";
             this.panelRegisteredData.Size = new System.Drawing.Size(931, 400);
             this.panelRegisteredData.TabIndex = 2;
+            // 
+            // dgvData
+            // 
+            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvData.GridColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dgvData.Location = new System.Drawing.Point(16, 328);
+            this.dgvData.Name = "dgvData";
+            this.dgvData.RowTemplate.Height = 25;
+            this.dgvData.Size = new System.Drawing.Size(915, 72);
+            this.dgvData.TabIndex = 0;
+            this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellContentClick);
             // 
             // panelTituloData
             // 
@@ -283,66 +284,6 @@ namespace WinFormPdvUth2021
             this.lblTituloData.TabIndex = 9;
             this.lblTituloData.Text = "Registered Products";
             // 
-            // dgvData
-            // 
-            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6});
-            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvData.Location = new System.Drawing.Point(0, 0);
-            this.dgvData.Name = "dgvData";
-            this.dgvData.RowTemplate.Height = 25;
-            this.dgvData.Size = new System.Drawing.Size(931, 400);
-            this.dgvData.TabIndex = 0;
-            this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellContentClick);
-            // 
-            // Column1
-            // 
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Poppins Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle7;
-            this.Column1.HeaderText = "ID";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Poppins Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle8;
-            this.Column2.HeaderText = "Article";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Poppins Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle9;
-            this.Column3.HeaderText = "Description";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Poppins Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle10;
-            this.Column4.HeaderText = "Price";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Poppins Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle11;
-            this.Column5.HeaderText = "Qty.";
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Poppins Light", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle12;
-            this.Column6.HeaderText = "Subtotal";
-            this.Column6.Name = "Column6";
-            // 
             // gBoxForm
             // 
             this.gBoxForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(211)))), ((int)(((byte)(94)))));
@@ -355,7 +296,7 @@ namespace WinFormPdvUth2021
             this.gBoxForm.Margin = new System.Windows.Forms.Padding(13, 3, 13, 3);
             this.gBoxForm.Name = "gBoxForm";
             this.gBoxForm.Padding = new System.Windows.Forms.Padding(13);
-            this.gBoxForm.Size = new System.Drawing.Size(931, 222);
+            this.gBoxForm.Size = new System.Drawing.Size(931, 274);
             this.gBoxForm.TabIndex = 3;
             this.gBoxForm.TabStop = false;
             this.gBoxForm.Text = "Product Data Manipulation";
@@ -372,7 +313,7 @@ namespace WinFormPdvUth2021
             this.panel3.Controls.Add(this.label13);
             this.panel3.Location = new System.Drawing.Point(684, 23);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(339, 224);
+            this.panel3.Size = new System.Drawing.Size(339, 245);
             this.panel3.TabIndex = 9;
             // 
             // textBox9
@@ -451,13 +392,13 @@ namespace WinFormPdvUth2021
             this.panel2.Controls.Add(this.label9);
             this.panel2.Location = new System.Drawing.Point(339, 23);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(339, 224);
+            this.panel2.Size = new System.Drawing.Size(339, 245);
             this.panel2.TabIndex = 8;
             // 
             // comboUnitOfMeasure
             // 
             this.comboUnitOfMeasure.FormattingEnabled = true;
-            this.comboUnitOfMeasure.Location = new System.Drawing.Point(148, 142);
+            this.comboUnitOfMeasure.Location = new System.Drawing.Point(148, 179);
             this.comboUnitOfMeasure.Name = "comboUnitOfMeasure";
             this.comboUnitOfMeasure.Size = new System.Drawing.Size(169, 42);
             this.comboUnitOfMeasure.TabIndex = 11;
@@ -465,7 +406,7 @@ namespace WinFormPdvUth2021
             // comboSubcategory
             // 
             this.comboSubcategory.FormattingEnabled = true;
-            this.comboSubcategory.Location = new System.Drawing.Point(148, 101);
+            this.comboSubcategory.Location = new System.Drawing.Point(148, 125);
             this.comboSubcategory.Name = "comboSubcategory";
             this.comboSubcategory.Size = new System.Drawing.Size(169, 42);
             this.comboSubcategory.TabIndex = 10;
@@ -473,7 +414,7 @@ namespace WinFormPdvUth2021
             // comboCategory
             // 
             this.comboCategory.FormattingEnabled = true;
-            this.comboCategory.Location = new System.Drawing.Point(148, 59);
+            this.comboCategory.Location = new System.Drawing.Point(148, 71);
             this.comboCategory.Name = "comboCategory";
             this.comboCategory.Size = new System.Drawing.Size(169, 42);
             this.comboCategory.TabIndex = 9;
@@ -489,7 +430,7 @@ namespace WinFormPdvUth2021
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(16, 148);
+            this.label6.Location = new System.Drawing.Point(16, 187);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(97, 34);
             this.label6.TabIndex = 6;
@@ -498,7 +439,7 @@ namespace WinFormPdvUth2021
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 109);
+            this.label7.Location = new System.Drawing.Point(16, 133);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(138, 34);
             this.label7.TabIndex = 4;
@@ -507,7 +448,7 @@ namespace WinFormPdvUth2021
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(16, 67);
+            this.label8.Location = new System.Drawing.Point(16, 79);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(105, 34);
             this.label8.TabIndex = 2;
@@ -524,6 +465,8 @@ namespace WinFormPdvUth2021
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtPrice);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtBarcode);
             this.panel1.Controls.Add(this.lblBarcode);
             this.panel1.Controls.Add(this.txtDescription);
@@ -534,12 +477,28 @@ namespace WinFormPdvUth2021
             this.panel1.Controls.Add(this.lblID);
             this.panel1.Location = new System.Drawing.Point(0, 23);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(339, 224);
+            this.panel1.Size = new System.Drawing.Size(339, 245);
             this.panel1.TabIndex = 0;
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.Location = new System.Drawing.Point(148, 186);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(169, 36);
+            this.txtPrice.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 191);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 34);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Price";
             // 
             // txtBarcode
             // 
-            this.txtBarcode.Location = new System.Drawing.Point(148, 148);
+            this.txtBarcode.Location = new System.Drawing.Point(148, 145);
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(169, 36);
             this.txtBarcode.TabIndex = 7;
@@ -555,7 +514,7 @@ namespace WinFormPdvUth2021
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(148, 106);
+            this.txtDescription.Location = new System.Drawing.Point(148, 104);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(169, 36);
             this.txtDescription.TabIndex = 5;
@@ -571,7 +530,7 @@ namespace WinFormPdvUth2021
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(148, 64);
+            this.txtName.Location = new System.Drawing.Point(148, 63);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(169, 36);
             this.txtName.TabIndex = 3;
@@ -609,7 +568,7 @@ namespace WinFormPdvUth2021
             this.panelActions.Controls.Add(this.btnAdd);
             this.panelActions.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelActions.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.panelActions.Location = new System.Drawing.Point(0, 388);
+            this.panelActions.Location = new System.Drawing.Point(0, 440);
             this.panelActions.Name = "panelActions";
             this.panelActions.Size = new System.Drawing.Size(931, 52);
             this.panelActions.TabIndex = 4;
@@ -670,6 +629,7 @@ namespace WinFormPdvUth2021
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "+ Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // FrmProducto
             // 
@@ -686,6 +646,7 @@ namespace WinFormPdvUth2021
             this.Name = "FrmProducto";
             this.Text = "FrmProducto";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmProducto_Load);
             this.panelHeader.ResumeLayout(false);
             this.panelAvatar.ResumeLayout(false);
             this.panelAvatar.PerformLayout();
@@ -698,9 +659,9 @@ namespace WinFormPdvUth2021
             this.panelReloj.ResumeLayout(false);
             this.panelReloj.PerformLayout();
             this.panelRegisteredData.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.panelTituloData.ResumeLayout(false);
             this.panelTituloData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.gBoxForm.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -739,12 +700,6 @@ namespace WinFormPdvUth2021
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Panel panelTituloData;
         private System.Windows.Forms.Label lblTituloData;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox textBox9;
@@ -772,5 +727,8 @@ namespace WinFormPdvUth2021
         private System.Windows.Forms.ComboBox comboSubcategory;
         private System.Windows.Forms.ComboBox comboCategory;
         private System.Windows.Forms.ComboBox comboBrand;
+        private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox Price;
     }
 }
