@@ -31,4 +31,10 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="imgs\brands\" />
+    <Folder Include="imgs\users\" />
+    <Folder Include="imgs\products\" />
+  </ItemGroup>
+
 </Project>

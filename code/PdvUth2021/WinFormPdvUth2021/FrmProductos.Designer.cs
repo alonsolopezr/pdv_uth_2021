@@ -401,6 +401,7 @@ namespace WinFormPdvUth2021
             this.comboBrand.Name = "comboBrand";
             this.comboBrand.Size = new System.Drawing.Size(169, 42);
             this.comboBrand.TabIndex = 8;
+            this.comboBrand.SelectedIndexChanged += new System.EventHandler(this.comboBrand_SelectedIndexChanged);
             // 
             // label6
             // 

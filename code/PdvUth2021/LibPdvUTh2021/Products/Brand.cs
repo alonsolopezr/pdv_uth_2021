@@ -41,6 +41,11 @@ namespace LibPdvUTh2021.Products
             search.Add(new SearchCollection("id", CriteriaOperator.EQUAL, id, false, LogicOperator.NOTHING));
             return (this.read(search)[0])[1].ToString();
         }
-
+        public string imageOf(int id)
+        {
+            List<SearchCollection> search = new List<SearchCollection>();
+            search.Add(new SearchCollection("id", CriteriaOperator.EQUAL, id, false, LogicOperator.NOTHING));
+            return (this.read(search)[0])[3].ToString();
+        }
     }
 }

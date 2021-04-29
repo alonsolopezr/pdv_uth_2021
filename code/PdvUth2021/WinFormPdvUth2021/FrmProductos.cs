@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -137,6 +138,35 @@ namespace WinFormPdvUth2021
                 txtImage.Text = openFileDialogImage.FileName;
             }
 
+        }
+
+        private void comboBrand_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            picBoxBrand.Image = null;            
+            // obtener el dir de la app
+            string bin = Path.GetDirectoryName(Application.StartupPath);
+
+            //ir a un dir arriba
+            string dir = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(bin)));
+
+            //agregar el path para guardar la imagen
+            dir += brand.imageOf(int.Parse(comboBrand.SelectedValue.ToString()));
+
+            //guardar la imagen
+
+           
+            //using (var memoryStream = new MemoryStream(File.ReadAllBytes(dir)))
+            //{
+             
+                    picBoxBrand.Image = Image.FromFile(dir);
+             
+            //}
+
+                    //notificar
+
+                    //MessageBox.Show("EL producto <" + txtNombre.Text + "> se ha almacenado.", "Nuevo Producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //picBoxBrand.Refresh();
         }
     }
 }
