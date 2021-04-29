@@ -257,11 +257,12 @@ namespace WinFormPdvUth2021
             // dgvData
             // 
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvData.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvData.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgvData.Location = new System.Drawing.Point(16, 328);
+            this.dgvData.Location = new System.Drawing.Point(0, 139);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowTemplate.Height = 25;
-            this.dgvData.Size = new System.Drawing.Size(915, 72);
+            this.dgvData.Size = new System.Drawing.Size(931, 261);
             this.dgvData.TabIndex = 0;
             this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellContentClick);
             // 

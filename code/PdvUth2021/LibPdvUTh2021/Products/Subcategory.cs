@@ -1,4 +1,5 @@
-﻿using LibPdvUTh2021.App;
+﻿using LibBD;
+using LibPdvUTh2021.App;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,13 @@ namespace LibPdvUTh2021.Products
         {
             //como por default el Value es ID y el Display en Name, no necesito pasarle nada
             return this.index();
+        }
+
+        public string nameOf(int id)
+        {
+            List<SearchCollection> search = new List<SearchCollection>();
+            search.Add(new SearchCollection("id", CriteriaOperator.EQUAL, id, false, LogicOperator.NOTHING));
+            return (this.read(search)[0])[1].ToString();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using LibPdvUTh2021.Products;
+﻿using LibPdvUTh2021.App;
+using LibPdvUTh2021.Products;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,12 +42,44 @@ namespace WinFormPdvUth2021
             //Add/Save button
             if (!addSaveFlag) btnAdd.Text = "Add"; else btnAdd.Text = "Save";
 
+            fillDataGrid();
+            
+        }
+        private void fillDataGrid() 
+        {
             //fill the datagrid
-            dgvData.Rows.Clear();
-            dgvData.DataSource = product.index(new LibBD.OrderBy("name", LibBD.Order.ASC));
+            //fill the datagrid
+            if (dgvData.RowCount >= 0)
+            {
+                dgvData.DataSource = null;
+                dgvData.Rows.Clear();
+                
+
+            }
+            if (dgvData.Columns.Count >= 0) 
+            {
+                dgvData.Columns.Clear();
+                dgvData.Columns.Add("colId", "Id");
+                dgvData.Columns.Add("colName", "Name");
+                dgvData.Columns.Add("colDescription", "Description");
+                dgvData.Columns.Add("colPrice", "Price");
+                dgvData.Columns.Add("colBarcode", "Barcode");
+                dgvData.Columns.Add("colBrand", "Brand");
+                dgvData.Columns.Add("colSubcategory", "Subcategory");
+                dgvData.Columns.Add("colImage", "Image");
+                dgvData.Columns.Add("colUnit", "Unit of Measure");
+            }
+            List<List<object>> data = product.index(new LibBD.OrderBy("name", LibBD.Order.ASC));
+            foreach (List<object> rowData in data)
+            {
+                object[] resArray = rowData.ToArray();
+                resArray[5] = brand.nameOf(int.Parse(resArray[5].ToString()));
+                resArray[6] = subcategory.nameOf(int.Parse(resArray[6].ToString()));
+                //resArray[8] = comboUnitOfMeasure.Items[int.Parse(resArray[8].ToString())];
+                dgvData.Rows.Add(resArray);
+            }
             dgvData.Refresh();
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -69,14 +102,15 @@ namespace WinFormPdvUth2021
             else 
             {
                 //Save the data
-                if (product.save(txtName.Text, txtDescription.Text, double.Parse(txtPrice.Text), txtBarcode.Text, int.Parse(comboBrand.SelectedValue.ToString()), int.Parse(comboSubcategory.SelectedValue.ToString()), comboUnitOfMeasure.SelectedItem.ToString())) 
+                if (product.save(txtName.Text, txtDescription.Text, double.Parse(txtPrice.Text), txtBarcode.Text, int.Parse(comboBrand.SelectedValue.ToString()), int.Parse(comboSubcategory.SelectedValue.ToString()), (comboUnitOfMeasure.SelectedIndex+1).ToString())) 
                 {
                     MessageBox.Show("Producto Guardado");
                     btnAdd.Text = "Add";
                     addSaveFlag = false;
+                    fillDataGrid();
                 }
                 else
-                    MessageBox.Show("Error, Producto NO Guardado. ");
+                    MessageBox.Show("Error, Producto NO Guardado. "+product.ERROR);
             }
 
         }
@@ -86,27 +120,7 @@ namespace WinFormPdvUth2021
             //Add/Save button
             if (!addSaveFlag) btnAdd.Text = "Add"; else btnAdd.Text = "Save";
 
-            //fill the datagrid
-            if (dgvData.RowCount > 0) 
-            {
-                dgvData.DataSource = null;
-                dgvData.Rows.Clear();
-                dgvData.Columns.Add("colId", "Id");
-                dgvData.Columns.Add("colName", "Name");
-                dgvData.Columns.Add("colDescription", "Description"); 
-                dgvData.Columns.Add("colPrice", "Price"); 
-                dgvData.Columns.Add("colBarcode", "Barcode"); 
-                dgvData.Columns.Add("colBrand", "Brand"); 
-                dgvData.Columns.Add("colSubcategory", "Subcategory"); 
-                dgvData.Columns.Add("colUnit", "Unit of Measure"); 
-                          
-            }
-            List<List<object>> data = product.index(new LibBD.OrderBy("name", LibBD.Order.ASC));
-            foreach (List<object> rowData in data)
-            {
-                dgvData.Rows.Add(rowData);
-            }
-            dgvData.Refresh();
+            this.fillDataGrid();
         }
     }
 }

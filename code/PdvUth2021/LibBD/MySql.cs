@@ -356,7 +356,7 @@ namespace LibBD
                 string parsedFields = "";
                 //parse the fields collections
                 foreach (string col in fields)
-                    parsedFields += $"{col},";
+                    parsedFields += $"{col}, ";
                 //remove the last comma
                 parsedFields = parsedFields.Remove(parsedFields.Length - 2);
                 string parsedWhere = "";
