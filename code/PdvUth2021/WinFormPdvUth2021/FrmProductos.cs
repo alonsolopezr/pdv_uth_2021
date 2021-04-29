@@ -122,5 +122,21 @@ namespace WinFormPdvUth2021
 
             this.fillDataGrid();
         }
+
+        private void btnLoadImg_Click(object sender, EventArgs e)
+        {
+            // open file dialog   
+           
+            // image filters  
+            openFileDialogImage.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+            if (openFileDialogImage.ShowDialog() == DialogResult.OK)
+            {
+                // display image in picture box  
+                picBoxImage.Image = new Bitmap(openFileDialogImage.FileName);
+                // image file path  
+                txtImage.Text = openFileDialogImage.FileName;
+            }
+
+        }
     }
 }

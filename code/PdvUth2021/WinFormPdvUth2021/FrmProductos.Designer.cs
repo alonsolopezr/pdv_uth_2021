@@ -49,16 +49,12 @@ namespace WinFormPdvUth2021
             this.panelTituloData = new System.Windows.Forms.Panel();
             this.lblTituloData = new System.Windows.Forms.Label();
             this.gBoxForm = new System.Windows.Forms.GroupBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.panelFormImage = new System.Windows.Forms.Panel();
+            this.picBoxImage = new System.Windows.Forms.PictureBox();
+            this.btnLoadImg = new System.Windows.Forms.Button();
+            this.txtImage = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.picBoxBrand = new System.Windows.Forms.PictureBox();
             this.comboUnitOfMeasure = new System.Windows.Forms.ComboBox();
             this.comboSubcategory = new System.Windows.Forms.ComboBox();
             this.comboCategory = new System.Windows.Forms.ComboBox();
@@ -83,6 +79,7 @@ namespace WinFormPdvUth2021
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
             this.panelHeader.SuspendLayout();
             this.panelAvatar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxAvatar)).BeginInit();
@@ -94,8 +91,10 @@ namespace WinFormPdvUth2021
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.panelTituloData.SuspendLayout();
             this.gBoxForm.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.panelFormImage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxImage)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxBrand)).BeginInit();
             this.panel1.SuspendLayout();
             this.panelActions.SuspendLayout();
             this.SuspendLayout();
@@ -108,7 +107,7 @@ namespace WinFormPdvUth2021
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(931, 100);
+            this.panelHeader.Size = new System.Drawing.Size(1087, 100);
             this.panelHeader.TabIndex = 0;
             // 
             // panelAvatar
@@ -118,7 +117,7 @@ namespace WinFormPdvUth2021
             this.panelAvatar.Controls.Add(this.label20);
             this.panelAvatar.Controls.Add(this.picBoxAvatar);
             this.panelAvatar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelAvatar.Location = new System.Drawing.Point(556, 0);
+            this.panelAvatar.Location = new System.Drawing.Point(712, 0);
             this.panelAvatar.Name = "panelAvatar";
             this.panelAvatar.Size = new System.Drawing.Size(375, 100);
             this.panelAvatar.TabIndex = 1;
@@ -201,7 +200,7 @@ namespace WinFormPdvUth2021
             this.panelTituloForm.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTituloForm.Location = new System.Drawing.Point(0, 100);
             this.panelTituloForm.Name = "panelTituloForm";
-            this.panelTituloForm.Size = new System.Drawing.Size(931, 66);
+            this.panelTituloForm.Size = new System.Drawing.Size(1087, 66);
             this.panelTituloForm.TabIndex = 1;
             // 
             // panelReloj
@@ -209,7 +208,7 @@ namespace WinFormPdvUth2021
             this.panelReloj.Controls.Add(this.lblHora);
             this.panelReloj.Controls.Add(this.lblFecha);
             this.panelReloj.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelReloj.Location = new System.Drawing.Point(731, 0);
+            this.panelReloj.Location = new System.Drawing.Point(887, 0);
             this.panelReloj.Name = "panelReloj";
             this.panelReloj.Size = new System.Drawing.Size(200, 66);
             this.panelReloj.TabIndex = 11;
@@ -251,7 +250,7 @@ namespace WinFormPdvUth2021
             this.panelRegisteredData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRegisteredData.Location = new System.Drawing.Point(0, 166);
             this.panelRegisteredData.Name = "panelRegisteredData";
-            this.panelRegisteredData.Size = new System.Drawing.Size(931, 400);
+            this.panelRegisteredData.Size = new System.Drawing.Size(1087, 400);
             this.panelRegisteredData.TabIndex = 2;
             // 
             // dgvData
@@ -262,7 +261,7 @@ namespace WinFormPdvUth2021
             this.dgvData.Location = new System.Drawing.Point(0, 139);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowTemplate.Height = 25;
-            this.dgvData.Size = new System.Drawing.Size(931, 261);
+            this.dgvData.Size = new System.Drawing.Size(1087, 261);
             this.dgvData.TabIndex = 0;
             this.dgvData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellContentClick);
             // 
@@ -272,7 +271,7 @@ namespace WinFormPdvUth2021
             this.panelTituloData.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTituloData.Location = new System.Drawing.Point(0, 0);
             this.panelTituloData.Name = "panelTituloData";
-            this.panelTituloData.Size = new System.Drawing.Size(931, 43);
+            this.panelTituloData.Size = new System.Drawing.Size(1087, 43);
             this.panelTituloData.TabIndex = 1;
             // 
             // lblTituloData
@@ -288,7 +287,7 @@ namespace WinFormPdvUth2021
             // gBoxForm
             // 
             this.gBoxForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(211)))), ((int)(((byte)(94)))));
-            this.gBoxForm.Controls.Add(this.panel3);
+            this.gBoxForm.Controls.Add(this.panelFormImage);
             this.gBoxForm.Controls.Add(this.panel2);
             this.gBoxForm.Controls.Add(this.panel1);
             this.gBoxForm.Dock = System.Windows.Forms.DockStyle.Top;
@@ -297,92 +296,57 @@ namespace WinFormPdvUth2021
             this.gBoxForm.Margin = new System.Windows.Forms.Padding(13, 3, 13, 3);
             this.gBoxForm.Name = "gBoxForm";
             this.gBoxForm.Padding = new System.Windows.Forms.Padding(13);
-            this.gBoxForm.Size = new System.Drawing.Size(931, 274);
+            this.gBoxForm.Size = new System.Drawing.Size(1087, 274);
             this.gBoxForm.TabIndex = 3;
             this.gBoxForm.TabStop = false;
             this.gBoxForm.Text = "Product Data Manipulation";
             // 
-            // panel3
+            // panelFormImage
             // 
-            this.panel3.Controls.Add(this.textBox9);
-            this.panel3.Controls.Add(this.label10);
-            this.panel3.Controls.Add(this.textBox10);
-            this.panel3.Controls.Add(this.label11);
-            this.panel3.Controls.Add(this.textBox11);
-            this.panel3.Controls.Add(this.label12);
-            this.panel3.Controls.Add(this.textBox12);
-            this.panel3.Controls.Add(this.label13);
-            this.panel3.Location = new System.Drawing.Point(684, 23);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(339, 245);
-            this.panel3.TabIndex = 9;
+            this.panelFormImage.Controls.Add(this.picBoxImage);
+            this.panelFormImage.Controls.Add(this.btnLoadImg);
+            this.panelFormImage.Controls.Add(this.txtImage);
+            this.panelFormImage.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelFormImage.Location = new System.Drawing.Point(735, 42);
+            this.panelFormImage.Name = "panelFormImage";
+            this.panelFormImage.Size = new System.Drawing.Size(339, 219);
+            this.panelFormImage.TabIndex = 9;
             // 
-            // textBox9
+            // picBoxImage
             // 
-            this.textBox9.Location = new System.Drawing.Point(148, 148);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(169, 36);
-            this.textBox9.TabIndex = 7;
+            this.picBoxImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picBoxImage.Location = new System.Drawing.Point(16, 90);
+            this.picBoxImage.Name = "picBoxImage";
+            this.picBoxImage.Size = new System.Drawing.Size(314, 116);
+            this.picBoxImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picBoxImage.TabIndex = 3;
+            this.picBoxImage.TabStop = false;
             // 
-            // label10
+            // btnLoadImg
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(16, 148);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(81, 34);
-            this.label10.TabIndex = 6;
-            this.label10.Text = "label10";
+            this.btnLoadImg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLoadImg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(61)))), ((int)(((byte)(119)))));
+            this.btnLoadImg.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnLoadImg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoadImg.ForeColor = System.Drawing.Color.White;
+            this.btnLoadImg.Location = new System.Drawing.Point(16, 7);
+            this.btnLoadImg.Name = "btnLoadImg";
+            this.btnLoadImg.Size = new System.Drawing.Size(115, 39);
+            this.btnLoadImg.TabIndex = 2;
+            this.btnLoadImg.Text = "Load";
+            this.btnLoadImg.UseVisualStyleBackColor = true;
+            this.btnLoadImg.Click += new System.EventHandler(this.btnLoadImg_Click);
             // 
-            // textBox10
+            // txtImage
             // 
-            this.textBox10.Location = new System.Drawing.Point(148, 106);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(169, 36);
-            this.textBox10.TabIndex = 5;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(16, 109);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(75, 34);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "label11";
-            // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(148, 64);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(169, 36);
-            this.textBox11.TabIndex = 3;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(16, 67);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(80, 34);
-            this.label12.TabIndex = 2;
-            this.label12.Text = "label12";
-            // 
-            // textBox12
-            // 
-            this.textBox12.Location = new System.Drawing.Point(148, 22);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(169, 36);
-            this.textBox12.TabIndex = 1;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(16, 25);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(80, 34);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "label13";
+            this.txtImage.Location = new System.Drawing.Point(16, 48);
+            this.txtImage.Name = "txtImage";
+            this.txtImage.Size = new System.Drawing.Size(314, 36);
+            this.txtImage.TabIndex = 1;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.picBoxBrand);
             this.panel2.Controls.Add(this.comboUnitOfMeasure);
             this.panel2.Controls.Add(this.comboSubcategory);
             this.panel2.Controls.Add(this.comboCategory);
@@ -393,8 +357,18 @@ namespace WinFormPdvUth2021
             this.panel2.Controls.Add(this.label9);
             this.panel2.Location = new System.Drawing.Point(339, 23);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(339, 245);
+            this.panel2.Size = new System.Drawing.Size(643, 245);
             this.panel2.TabIndex = 8;
+            // 
+            // picBoxBrand
+            // 
+            this.picBoxBrand.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picBoxBrand.Location = new System.Drawing.Point(350, 22);
+            this.picBoxBrand.Name = "picBoxBrand";
+            this.picBoxBrand.Size = new System.Drawing.Size(259, 162);
+            this.picBoxBrand.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picBoxBrand.TabIndex = 12;
+            this.picBoxBrand.TabStop = false;
             // 
             // comboUnitOfMeasure
             // 
@@ -571,7 +545,7 @@ namespace WinFormPdvUth2021
             this.panelActions.Font = new System.Drawing.Font("Poppins", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.panelActions.Location = new System.Drawing.Point(0, 440);
             this.panelActions.Name = "panelActions";
-            this.panelActions.Size = new System.Drawing.Size(931, 52);
+            this.panelActions.Size = new System.Drawing.Size(1087, 52);
             this.panelActions.TabIndex = 4;
             // 
             // btnCancel
@@ -581,7 +555,7 @@ namespace WinFormPdvUth2021
             this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(785, 9);
+            this.btnCancel.Location = new System.Drawing.Point(941, 9);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(115, 39);
             this.btnCancel.TabIndex = 3;
@@ -596,7 +570,7 @@ namespace WinFormPdvUth2021
             this.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(61)))), ((int)(((byte)(119)))));
-            this.btnUpdate.Location = new System.Drawing.Point(652, 9);
+            this.btnUpdate.Location = new System.Drawing.Point(808, 9);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(115, 39);
             this.btnUpdate.TabIndex = 2;
@@ -610,7 +584,7 @@ namespace WinFormPdvUth2021
             this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(61)))), ((int)(((byte)(119)))));
-            this.btnDelete.Location = new System.Drawing.Point(519, 9);
+            this.btnDelete.Location = new System.Drawing.Point(675, 9);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(115, 39);
             this.btnDelete.TabIndex = 1;
@@ -624,7 +598,7 @@ namespace WinFormPdvUth2021
             this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(386, 9);
+            this.btnAdd.Location = new System.Drawing.Point(542, 9);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(115, 39);
             this.btnAdd.TabIndex = 0;
@@ -632,12 +606,16 @@ namespace WinFormPdvUth2021
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // openFileDialogImage
+            // 
+            this.openFileDialogImage.FileName = "openFileDialog1";
+            // 
             // FrmProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(211)))));
-            this.ClientSize = new System.Drawing.Size(931, 566);
+            this.ClientSize = new System.Drawing.Size(1087, 566);
             this.Controls.Add(this.panelActions);
             this.Controls.Add(this.gBoxForm);
             this.Controls.Add(this.panelRegisteredData);
@@ -664,10 +642,12 @@ namespace WinFormPdvUth2021
             this.panelTituloData.ResumeLayout(false);
             this.panelTituloData.PerformLayout();
             this.gBoxForm.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.panelFormImage.ResumeLayout(false);
+            this.panelFormImage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxImage)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxBrand)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panelActions.ResumeLayout(false);
@@ -702,15 +682,8 @@ namespace WinFormPdvUth2021
         private System.Windows.Forms.Panel panelTituloData;
         private System.Windows.Forms.Label lblTituloData;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Panel panelFormImage;
+        private System.Windows.Forms.TextBox txtImage;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
@@ -731,5 +704,9 @@ namespace WinFormPdvUth2021
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox Price;
+        private System.Windows.Forms.PictureBox picBoxImage;
+        private System.Windows.Forms.Button btnLoadImg;
+        private System.Windows.Forms.OpenFileDialog openFileDialogImage;
+        private System.Windows.Forms.PictureBox picBoxBrand;
     }
 }
