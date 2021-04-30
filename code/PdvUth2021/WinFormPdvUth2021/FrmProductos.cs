@@ -23,6 +23,10 @@ namespace WinFormPdvUth2021
         Subcategory subcategory = new Subcategory();
         //Flag to Add/Save button change
         bool addSaveFlag = false;
+        //string of product image path, for saving the FILE in the project FOLDER
+        string imgPath;
+        //path to save the relative path in the PRODUCTS TABLE image field
+        string imgBDPath;
 
         public FrmProducto()
         {
@@ -103,11 +107,13 @@ namespace WinFormPdvUth2021
             else 
             {
                 //Save the data
-                if (product.save(txtName.Text, txtDescription.Text, double.Parse(txtPrice.Text), txtBarcode.Text, int.Parse(comboBrand.SelectedValue.ToString()), int.Parse(comboSubcategory.SelectedValue.ToString()), (comboUnitOfMeasure.SelectedIndex+1).ToString())) 
+                if (product.save(txtName.Text, txtDescription.Text, double.Parse(txtPrice.Text), txtBarcode.Text, int.Parse(comboBrand.SelectedValue.ToString()), int.Parse(comboSubcategory.SelectedValue.ToString()), (comboUnitOfMeasure.SelectedIndex+1).ToString(), imgBDPath) ) 
                 {
-                    MessageBox.Show("Producto Guardado");
+                    MessageBox.Show("The product <" + txtName.Text + "> has been stored.", "New Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     btnAdd.Text = "Add";
                     addSaveFlag = false;
+                    //img FILE save in full system PATH
+                    picBoxImage.Image.Save(imgPath);
                     fillDataGrid();
                 }
                 else
@@ -129,13 +135,23 @@ namespace WinFormPdvUth2021
             // open file dialog   
            
             // image filters  
-            openFileDialogImage.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+            openFileDialogImage.Filter = "Image Files(*.png; *.jpg; *.jpeg; *.gif; *.bmp)|*.png; *.jpg; *.jpeg; *.gif; *.bmp";
             if (openFileDialogImage.ShowDialog() == DialogResult.OK)
             {
                 // display image in picture box  
                 picBoxImage.Image = new Bitmap(openFileDialogImage.FileName);
-                // image file path  
-                txtImage.Text = openFileDialogImage.FileName;
+                
+                string extension = openFileDialogImage.FileName.Substring(openFileDialogImage.FileName.IndexOf(".")+1);
+                // image file NEW name, including UniqueID, and the extension of original file
+                txtImage.Text = string.Format(@"{0}.{1}", Guid.NewGuid(), extension);
+                // obtener el dir de la app
+                string bin = Path.GetDirectoryName(Application.StartupPath);
+
+                //ir a un dir arriba
+                string dir = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(bin)));
+                //image save path, the products goes in imgs/products/uniqueNAME.extension
+                imgPath = string.Format(@"{0}\\imgs\\products\\{1}",dir, txtImage.Text);
+                imgBDPath = string.Format(@"\\imgs\\products\\{0}",  txtImage.Text);
             }
 
         }
@@ -153,20 +169,7 @@ namespace WinFormPdvUth2021
             dir += brand.imageOf(int.Parse(comboBrand.SelectedValue.ToString()));
 
             //guardar la imagen
-
-           
-            //using (var memoryStream = new MemoryStream(File.ReadAllBytes(dir)))
-            //{
-             
-                    picBoxBrand.Image = Image.FromFile(dir);
-             
-            //}
-
-                    //notificar
-
-                    //MessageBox.Show("EL producto <" + txtNombre.Text + "> se ha almacenado.", "Nuevo Producto", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    //picBoxBrand.Refresh();
-        }
+            picBoxBrand.Image = Image.FromFile(dir);
+                 }
     }
 }
