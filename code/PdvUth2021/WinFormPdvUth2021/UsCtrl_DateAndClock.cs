@@ -15,7 +15,7 @@ namespace WinFormPdvUth2021
         public UsCtrl_DateAndClock()
         {
             InitializeComponent();
-            lblFecha.Text = DateTime.Now.ToShortDateString();
+            lblFecha.Text = $"{DateTime.Now.Day}/{DateTime.Now.Month}/{DateTime.Now.Year}";
         }
 
         private void timerClock_Tick(object sender, EventArgs e)
@@ -25,7 +25,7 @@ namespace WinFormPdvUth2021
 
         private void timerDate_Tick(object sender, EventArgs e)
         {
-            lblFecha.Text = DateTime.Now.ToShortDateString();
+            lblFecha.Text = $"{DateTime.Now.Day}/{DateTime.Now.Month}/{DateTime.Now.Year}";
         }
     }
 }

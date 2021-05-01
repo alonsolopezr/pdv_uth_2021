@@ -58,11 +58,13 @@ namespace WinFormPdvUth2021
             // 
             // timerClock
             // 
+            this.timerClock.Enabled = true;
             this.timerClock.Interval = 1000;
             this.timerClock.Tick += new System.EventHandler(this.timerClock_Tick);
             // 
             // timerDate
             // 
+            this.timerDate.Enabled = true;
             this.timerDate.Interval = 86400;
             this.timerDate.Tick += new System.EventHandler(this.timerDate_Tick);
             // 

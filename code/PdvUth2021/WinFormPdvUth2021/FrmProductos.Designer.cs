@@ -41,8 +41,6 @@ namespace WinFormPdvUth2021
             this.picBoxLogo = new System.Windows.Forms.PictureBox();
             this.panelTituloForm = new System.Windows.Forms.Panel();
             this.panelReloj = new System.Windows.Forms.Panel();
-            this.lblHora = new System.Windows.Forms.Label();
-            this.lblFecha = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelRegisteredData = new System.Windows.Forms.Panel();
             this.dgvData = new System.Windows.Forms.DataGridView();
@@ -80,6 +78,7 @@ namespace WinFormPdvUth2021
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
+            this.usCtrl_DateAndClock1 = new WinFormPdvUth2021.UsCtrl_DateAndClock();
             this.panelHeader.SuspendLayout();
             this.panelAvatar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxAvatar)).BeginInit();
@@ -205,33 +204,12 @@ namespace WinFormPdvUth2021
             // 
             // panelReloj
             // 
-            this.panelReloj.Controls.Add(this.lblHora);
-            this.panelReloj.Controls.Add(this.lblFecha);
+            this.panelReloj.Controls.Add(this.usCtrl_DateAndClock1);
             this.panelReloj.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelReloj.Location = new System.Drawing.Point(887, 0);
             this.panelReloj.Name = "panelReloj";
             this.panelReloj.Size = new System.Drawing.Size(200, 66);
             this.panelReloj.TabIndex = 11;
-            // 
-            // lblHora
-            // 
-            this.lblHora.AutoSize = true;
-            this.lblHora.Font = new System.Drawing.Font("Sensible Schooling", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblHora.Location = new System.Drawing.Point(93, 30);
-            this.lblHora.Name = "lblHora";
-            this.lblHora.Size = new System.Drawing.Size(85, 19);
-            this.lblHora.TabIndex = 12;
-            this.lblHora.Text = "14:27:01 Hrs.";
-            // 
-            // lblFecha
-            // 
-            this.lblFecha.AutoSize = true;
-            this.lblFecha.Font = new System.Drawing.Font("Sensible Schooling", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblFecha.Location = new System.Drawing.Point(93, 7);
-            this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(76, 19);
-            this.lblFecha.TabIndex = 10;
-            this.lblFecha.Text = "18/03/2021";
             // 
             // label1
             // 
@@ -615,6 +593,14 @@ namespace WinFormPdvUth2021
             // 
             this.openFileDialogImage.FileName = "openFileDialog1";
             // 
+            // usCtrl_DateAndClock1
+            // 
+            this.usCtrl_DateAndClock1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.usCtrl_DateAndClock1.Location = new System.Drawing.Point(47, 0);
+            this.usCtrl_DateAndClock1.Name = "usCtrl_DateAndClock1";
+            this.usCtrl_DateAndClock1.Size = new System.Drawing.Size(153, 66);
+            this.usCtrl_DateAndClock1.TabIndex = 0;
+            // 
             // FrmProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -641,7 +627,6 @@ namespace WinFormPdvUth2021
             this.panelTituloForm.ResumeLayout(false);
             this.panelTituloForm.PerformLayout();
             this.panelReloj.ResumeLayout(false);
-            this.panelReloj.PerformLayout();
             this.panelRegisteredData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.panelTituloData.ResumeLayout(false);
@@ -674,8 +659,6 @@ namespace WinFormPdvUth2021
         private System.Windows.Forms.Panel panelTituloForm;
         private System.Windows.Forms.Panel panelReloj;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblHora;
-        private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.Panel panelRegisteredData;
         private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.GroupBox gBoxForm;
@@ -713,5 +696,6 @@ namespace WinFormPdvUth2021
         private System.Windows.Forms.Button btnLoadImg;
         private System.Windows.Forms.OpenFileDialog openFileDialogImage;
         private System.Windows.Forms.PictureBox picBoxBrand;
+        private UsCtrl_DateAndClock usCtrl_DateAndClock1;
     }
 }
