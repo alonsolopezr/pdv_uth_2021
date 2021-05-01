@@ -92,9 +92,54 @@ namespace WinFormPdvUth2021
 
         private void dgvData_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            //when clicked, load the data to the form
+            txtID.Text = dgvData.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtName.Text = dgvData.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtDescription.Text = dgvData.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtBarcode.Text = dgvData.Rows[e.RowIndex].Cells[3].Value.ToString();
+            txtPrice.Text = dgvData.Rows[e.RowIndex].Cells[4].Value.ToString();
+            comboBrand.SelectedItem = dgvData.Rows[e.RowIndex].Cells[5].Value.ToString();
+        }
+        /// <summary>
+        /// Deactivate or Activate the form txtBoxes and such
+        /// </summary>
+        /// <param name="activate">True = activate, False = deactivate</param>
+        private void activateForm(bool activate) 
+        {
+       
+            txtID.Enabled = activate;
+            txtName.Enabled = activate;
+            txtDescription.Enabled = activate;
+            txtPrice.Enabled = activate;
+            txtBarcode.Enabled = activate;
+            txtBarcode.Enabled = activate;
+            txtImage.Enabled = activate;
+            comboBrand.Enabled = activate;
+            comboCategory.Enabled = activate;
+            comboSubcategory.Enabled = activate;
+            comboUnitOfMeasure.Enabled = activate;
+            btnLoadImg.Enabled = activate;
+            //change panel background color
+            if (activate) gBoxForm.BackColor = Color.FromArgb(244, 211, 94);
+            else gBoxForm.BackColor = Color.FromArgb(100, 100, 100);
         }
 
+        private void cleanForm() 
+        {
+            txtID.Clear();
+            txtName.Clear();
+            txtDescription.Clear();
+            txtPrice.Clear();
+            txtBarcode.Clear();
+            txtBarcode.Clear();
+            txtImage.Clear();
+            comboBrand.SelectedItem = "";
+            comboCategory.SelectedItem = "";
+            comboSubcategory.SelectedItem = "";
+            comboUnitOfMeasure.SelectedItem = "";
+            picBoxBrand.Image = null;
+            picBoxImage.Image = null;
+        }
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //if Add button is clicked, we change the TEXT to 'Save'
@@ -103,6 +148,9 @@ namespace WinFormPdvUth2021
                 //enable and clean form
                 addSaveFlag = true;
                 btnAdd.Text = "Save";
+                //Clean form
+                this.activateForm(true);
+                this.cleanForm();
             }
             else 
             {
@@ -112,9 +160,14 @@ namespace WinFormPdvUth2021
                     MessageBox.Show("The product <" + txtName.Text + "> has been stored.", "New Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     btnAdd.Text = "Add";
                     addSaveFlag = false;
+                    
                     //img FILE save in full system PATH
                     picBoxImage.Image.Save(imgPath);
                     fillDataGrid();
+
+                    //cleanForm and disable
+                    this.activateForm(false);
+                    this.cleanForm();
                 }
                 else
                     MessageBox.Show("Error, Producto NO Guardado. "+product.ERROR);
@@ -128,6 +181,10 @@ namespace WinFormPdvUth2021
             if (!addSaveFlag) btnAdd.Text = "Add"; else btnAdd.Text = "Save";
 
             this.fillDataGrid();
+
+            //clean the form and disable form
+            this.cleanForm();
+            this.activateForm(false);
         }
 
         private void btnLoadImg_Click(object sender, EventArgs e)
