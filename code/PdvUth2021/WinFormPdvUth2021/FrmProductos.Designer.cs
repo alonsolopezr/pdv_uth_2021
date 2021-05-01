@@ -578,6 +578,7 @@ namespace WinFormPdvUth2021
             this.btnUpdate.TabIndex = 2;
             this.btnUpdate.Text = "* Update";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 

@@ -96,8 +96,18 @@ namespace WinFormPdvUth2021
             txtID.Text = dgvData.Rows[e.RowIndex].Cells[0].Value.ToString();
             txtName.Text = dgvData.Rows[e.RowIndex].Cells[1].Value.ToString();
             txtDescription.Text = dgvData.Rows[e.RowIndex].Cells[2].Value.ToString();
-            txtBarcode.Text = dgvData.Rows[e.RowIndex].Cells[3].Value.ToString();
-            txtPrice.Text = dgvData.Rows[e.RowIndex].Cells[4].Value.ToString();
+            txtPrice.Text = dgvData.Rows[e.RowIndex].Cells[3].Value.ToString();
+            txtBarcode.Text = dgvData.Rows[e.RowIndex].Cells[4].Value.ToString();
+            txtImage.Text = dgvData.Rows[e.RowIndex].Cells[7].Value.ToString();
+            //load image and get the image file path and bdpath
+            // obtener el dir de la app
+            string bin = Path.GetDirectoryName(Application.StartupPath);
+            //ir a un dir arriba
+            string dir = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(bin)));
+            //image save path, the products goes in imgs/products/uniqueNAME.extension
+            imgPath = string.Format(@"{0}{1}", dir, txtImage.Text);
+            imgBDPath = txtImage.Text.Replace(@"\", @"\\");
+            picBoxImage.Image = Image.FromFile(imgPath);
             //comboBrand.SelectedItem = dgvData.Rows[e.RowIndex].Cells[5].Value.ToString();
             foreach (ParaCombo brand in comboBrand.Items)
             {
@@ -122,7 +132,7 @@ namespace WinFormPdvUth2021
         private void activateForm(bool activate) 
         {
        
-            txtID.Enabled = activate;
+            //txtID.Enabled = activate;
             txtName.Enabled = activate;
             txtDescription.Enabled = activate;
             txtPrice.Enabled = activate;
@@ -232,16 +242,13 @@ namespace WinFormPdvUth2021
 
         private void comboBrand_SelectedIndexChanged(object sender, EventArgs e)
         {
-            picBoxBrand.Image = null;            
+            //picBoxBrand.Image = null;            
             // obtener el dir de la app
             string bin = Path.GetDirectoryName(Application.StartupPath);
-
             //ir a un dir arriba
             string dir = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(bin)));
-
             //agregar el path para guardar la imagen
             dir += brand.imageOf(int.Parse(comboBrand.SelectedValue.ToString()));
-
             //guardar la imagen
             picBoxBrand.Image = Image.FromFile(dir);
                  }
@@ -267,6 +274,35 @@ namespace WinFormPdvUth2021
                     MessageBox.Show($"Product ID:{txtID.Text} has NOT been DELETED. "+product.ERROR, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            //update the product data with the data introduced in form
+            if (product.update(txtName.Text,
+                txtDescription.Text,
+                double.Parse(txtPrice.Text),
+                txtBarcode.Text,
+                int.Parse(comboBrand.SelectedValue.ToString()),
+                int.Parse(comboSubcategory.SelectedValue.ToString()),
+                (comboUnitOfMeasure.SelectedIndex + 1).ToString(),
+                imgBDPath,
+                int.Parse(txtID.Text)))
+            {
+                //if img file NOT exists already
+                if(!File.Exists(imgPath))
+                    picBoxImage.Image.Save(imgPath); //img FILE save in full system PATH
+                MessageBox.Show("The product with ID: " + int.Parse(txtID.Text) + ", has been updated", "Product Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //clean form
+                this.cleanForm();
+                //deactivateform
+                this.activateForm(false);
+                //fiil dgv
+                this.fillDataGrid();
+            }
+            else
+                MessageBox.Show("The product with ID: " + int.Parse(txtID.Text) + ", has NOT been updated", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            
         }
     }
 }
