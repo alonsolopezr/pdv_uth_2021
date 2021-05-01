@@ -36,7 +36,7 @@ namespace LibPdvUTh2021.Products
         //constructor
 
         //CRUD
-        public bool create( string name, string description, double price, string barCode, int brandId, int subCategoryId, string metricUnit, string sku)
+        public bool save( string name, string description, double price, string barCode, int brandId, int subCategoryId, string metricUnit, string image )//, string sku)
         {
             List<DataCollection> data = new List<DataCollection>();
            // data.Add(new DataCollection("id", Types.INT,id));
@@ -47,11 +47,30 @@ namespace LibPdvUTh2021.Products
             data.Add(new DataCollection("subcategory_id", Types.INT, subCategoryId));
             data.Add(new DataCollection("price", Types.INT, price));
             data.Add(new DataCollection("measure_unit", Types.VARCHAR, metricUnit));
-            data.Add(new DataCollection("sku", Types.VARCHAR, sku));
+            data.Add(new DataCollection("image", Types.VARCHAR, image));
+            //data.Add(new DataCollection("sku", Types.VARCHAR, sku));
             bool res= base.create(data);
             if (!res) this.ERROR = BD.ERROR;
             return res;
         }
 
+
+        public bool update(string name, string description, double price, string barCode, int brandId, int subCategoryId, string metricUnit, string image, int id)//, string sku)
+        {
+            List<DataCollection> data = new List<DataCollection>();
+            // data.Add(new DataCollection("id", Types.INT,id));
+            data.Add(new DataCollection("name", Types.VARCHAR, name));
+            data.Add(new DataCollection("description", Types.VARCHAR, description));
+            data.Add(new DataCollection("bar_code", Types.VARCHAR, barCode));
+            data.Add(new DataCollection("brand_id", Types.INT, brandId));
+            data.Add(new DataCollection("subcategory_id", Types.INT, subCategoryId));
+            data.Add(new DataCollection("price", Types.INT, price));
+            data.Add(new DataCollection("measure_unit", Types.VARCHAR, metricUnit));
+            data.Add(new DataCollection("image", Types.VARCHAR, image));
+            //data.Add(new DataCollection("sku", Types.VARCHAR, sku));
+            bool res = base.update(data, id);
+            if (!res) this.ERROR = BD.ERROR;
+            return res;
+        }
     }
 }
