@@ -29,7 +29,7 @@ namespace LibBD
             this.US     = us;
             this.PWD    = pwd;
             this.PORT   = port;
-            //concatenates the connectionString
+            //concatenates the connectionString   "SERVER=127.0.0.1,1433"    "SERVER=1237.0.0.1; PORT=3306"
             this.connectionString = $"Server={this.SERVER},{this.PORT};Database={this.DBNAME};User Id={this.US};Password={this.PWD};";
             //instanciate the connection
             this.con = new SqlConnection(this.connectionString);
@@ -227,6 +227,59 @@ namespace LibBD
         }
 
         //SELECT *  FROM tabla WHERE 1 ORDER BY campo ASC/DESC
+        public override List<List<object>> index(string table, string idField = "id", string display = "name")
+        {
+            //returns a dynamic list of RECORDS/ROWS, each of these are List<object>
+            List<List<object>> res = new List<List<object>>();
+            //try catch
+            try
+            {
+                //connect
+                this.Connect();
+                //create the select query
+                string query = $"SELECT {idField},{display} FROM {table} WHERE 1 ";
+                //instanciate the SQL command
+                com = new SqlCommand(query, con);
+                //execute (READER) the query
+                SqlDataReader dr = com.ExecuteReader();
+                //parse the dataReader
+                //is there any RECOIRDS/ROWS from the SELECT
+                if(dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        //lets create a List<object> for each RECORD
+                        List<object> row = new List<object>();
+                        //read every column of EVERY EACH of the ROWS
+                        for (int i = 0; i < dr.FieldCount; i++)
+                            row.Add(dr.GetValue(i));
+                        //we ADD this List to the res Collection  
+                        res.Add(row);
+                    }
+                }else
+                {
+                    BD.ERROR = "EMPTY TABLE, NO ROWS RESULTED in index.";
+                }
+                //return
+            }
+            catch (SqlException sqlex)
+            {
+                BD.ERROR = $"SQL ERROR in reading the table -{table}- index . " + sqlex.Message;
+            }
+            catch (IOException ioex)
+            {
+                BD.ERROR = $"I/O ERROR in reading the table -{table}- index. " + ioex.Message;
+            }
+            catch (Exception ex)
+            {
+                BD.ERROR = $"General ERROR in reading the table -{table}- index. " + ex.Message;
+            }finally
+            {
+                this.Disconnect();
+            }
+            //return the Records collection
+            return res;
+        }
         public override List<List<object>> index(string table, OrderBy order)
         {
             //returns a dynamic list of RECORDS/ROWS, each of these are List<object>
@@ -238,7 +291,7 @@ namespace LibBD
                 this.Connect();
                 //create the select query
                 string query = $"SELECT * FROM {table} WHERE 1 ORDER BY {order.Name} {order.OrderCriteria}";
-                //instanciate the SQL command
+                //instanciate the MySql command
                 com = new SqlCommand(query, con);
                 //execute (READER) the query
                 SqlDataReader dr = com.ExecuteReader();

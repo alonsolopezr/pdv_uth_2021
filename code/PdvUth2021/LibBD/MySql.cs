@@ -30,8 +30,8 @@ namespace LibBD
             this.PWD = pwd;
             this.PORT = port;
             //concatenates the connectionString                                   
-             this.connectionString = $"Server={this.SERVER};Port={this.PORT};Database={this.DBNAME};Uid={this.US};Pwd={this.PWD};";
-           // this.connectionString = $"Server=localhost;Port=3306;Database=db_pdvuth2021;Uid=root;Pwd= ;";
+             this.connectionString = $"Server={this.SERVER}; Port={this.PORT}; Database={this.DBNAME};Uid={this.US};Pwd={this.PWD};";
+           // this.connectionString = $"Server=127.0.0.1;Port=3306;Database=db_pdvuth2021;Uid=root;Pwd= ;";
 
             //instanciate the connection
             this.con = new MySqlConnection(this.connectionString);
@@ -52,7 +52,7 @@ namespace LibBD
                 {
                     con.Close(); con.Open();
                 }
-                //statnlish coprrect executing 
+                //stablish correct excecuting 
                 res = true;
             }
             catch (MySqlException MySqlex)
@@ -285,6 +285,63 @@ namespace LibBD
             return res;
         }
 
+        public override List<List<object>> index(string table, string idField ="id", string display="name")
+        {
+            //returns a dynamic list of RECORDS/ROWS, each of these are List<object>
+            List<List<object>> res = new List<List<object>>();
+            //try catch
+            try
+            {
+                //connect
+                this.Connect();
+                //create the select query
+                string query = $"SELECT {idField},{display} FROM {table} WHERE 1 ";
+                //instanciate the MySql command
+                com = new MySqlCommand(query, con);
+                //execute (READER) the query
+                MySqlDataReader dr = com.ExecuteReader();
+                //parse the dataReader
+                //is there any RECOIRDS/ROWS from the SELECT
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        //lets create a List<object> for each RECORD
+                        List<object> row = new List<object>();
+                        //read every column of EVERY EACH of the ROWS
+                        for (int i = 0; i < dr.FieldCount; i++)
+                            row.Add(dr.GetValue(i));
+                        //we ADD this List to the res Collection  
+                        res.Add(row);
+                    }
+                }
+                else
+                {
+                    BD.ERROR = "EMPTY TABLE, NO ROWS RESULTED in index.";
+                }
+                //return
+            }
+            catch (MySqlException MySqlex)
+            {
+                BD.ERROR = $"MySql ERROR in reading the table -{table}- index . " + MySqlex.Message;
+            }
+            catch (IOException ioex)
+            {
+                BD.ERROR = $"I/O ERROR in reading the table -{table}- index. " + ioex.Message;
+            }
+            catch (Exception ex)
+            {
+                BD.ERROR = $"General ERROR in reading the table -{table}- index. " + ex.Message;
+            }
+            finally
+            {
+                this.Disconnect();
+            }
+            //return the Records collection
+            return res;
+        }
+
+
         public override List<List<object>> read(List<string> fields, string table, List<SearchCollection> search)
         {
             //returns a dynamic list of RECORDS/ROWS, each of these are List<object>
@@ -299,7 +356,7 @@ namespace LibBD
                 string parsedFields = "";
                 //parse the fields collections
                 foreach (string col in fields)
-                    parsedFields += $"{col},";
+                    parsedFields += $"{col}, ";
                 //remove the last comma
                 parsedFields = parsedFields.Remove(parsedFields.Length - 2);
                 string parsedWhere = "";
