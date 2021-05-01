@@ -98,7 +98,22 @@ namespace WinFormPdvUth2021
             txtDescription.Text = dgvData.Rows[e.RowIndex].Cells[2].Value.ToString();
             txtBarcode.Text = dgvData.Rows[e.RowIndex].Cells[3].Value.ToString();
             txtPrice.Text = dgvData.Rows[e.RowIndex].Cells[4].Value.ToString();
-            comboBrand.SelectedItem = dgvData.Rows[e.RowIndex].Cells[5].Value.ToString();
+            //comboBrand.SelectedItem = dgvData.Rows[e.RowIndex].Cells[5].Value.ToString();
+            foreach (ParaCombo brand in comboBrand.Items)
+            {
+                if (brand.Display.Equals(dgvData.Rows[e.RowIndex].Cells[5].Value.ToString()))
+                    comboBrand.SelectedItem = brand;
+            }
+            foreach (ParaCombo subcatego in comboSubcategory.Items)
+            {
+                if (subcatego.Display.Equals(dgvData.Rows[e.RowIndex].Cells[6].Value.ToString()))
+                    comboSubcategory.SelectedItem = subcatego;
+            }
+
+            //activateform
+            this.activateForm(true);
+            //activate edit and delete buttons
+            btnDelete.Enabled = btnUpdate.Enabled = true;
         }
         /// <summary>
         /// Deactivate or Activate the form txtBoxes and such
@@ -119,6 +134,8 @@ namespace WinFormPdvUth2021
             comboSubcategory.Enabled = activate;
             comboUnitOfMeasure.Enabled = activate;
             btnLoadImg.Enabled = activate;
+            //Edit and delete buttons
+            btnUpdate.Enabled = btnDelete.Enabled = (activate == true && addSaveFlag == false) ? activate : false;
             //change panel background color
             if (activate) gBoxForm.BackColor = Color.FromArgb(244, 211, 94);
             else gBoxForm.BackColor = Color.FromArgb(100, 100, 100);
@@ -228,5 +245,28 @@ namespace WinFormPdvUth2021
             //guardar la imagen
             picBoxBrand.Image = Image.FromFile(dir);
                  }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            //delete the ID selected
+            //confirm the delete
+            if (MessageBox.Show($"Are you Sure you want to delete <{txtName.Text}>?", "Delete Product", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) 
+            {
+                if (product.delete(int.Parse(txtID.Text)))
+                {
+                    MessageBox.Show($"Product ID:{txtID.Text} has been DELETED.", "Product Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //clean form
+                    this.cleanForm();
+                    //deactivateform
+                    this.activateForm(false);
+                    //fiil dgv
+                    this.fillDataGrid();
+                }
+                else 
+                {                
+                    MessageBox.Show($"Product ID:{txtID.Text} has NOT been DELETED. "+product.ERROR, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }
